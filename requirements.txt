@@ -1,8 +1,5 @@
-beautifulsoup4==4.11.1
-lxml==4.9.1
-pandas==1.4.4
-PyAutoGUI==0.9.53
-pyperclip==1.8.2
-requests==2.28.1
-selenium==4.5.0
-webdriver_manager==3.8.3
+beautifulsoup4>=4.12
+lxml>=5.0
+python-dotenv>=1.0
+selenium>=4.25
+webdriver-manager>=4.0

@@ -1,0 +1,58 @@
+[project]
+name = "instagram-profile-scraper"
+version = "2.0.0"
+description = "A fast, lightweight Python tool to scrape Instagram profile links using Selenium browser automation."
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.10"
+authors = [
+    { name = "SoClose Society", email = "contact@soclose.co" },
+]
+keywords = [
+    "instagram",
+    "scraper",
+    "selenium",
+    "web-scraping",
+    "data-extraction",
+    "profile-scraper",
+    "automation",
+    "beautifulsoup",
+    "csv-export",
+    "open-source",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Education",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Internet :: WWW/HTTP :: Dynamic Content",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+dependencies = [
+    "beautifulsoup4>=4.12",
+    "lxml>=5.0",
+    "python-dotenv>=1.0",
+    "selenium>=4.25",
+    "webdriver-manager>=4.0",
+]
+
+[project.urls]
+Homepage = "https://soclose.co"
+Repository = "https://github.com/soclosesociety/InstagramDataScraper"
+Issues = "https://github.com/soclosesociety/InstagramDataScraper/issues"
+
+[project.scripts]
+instagram-scraper = "main:main"
+
+[tool.setuptools]
+py-modules = ["main"]
+
+[build-system]
+requires = ["setuptools>=75.0"]
+build-backend = "setuptools.build_meta"
