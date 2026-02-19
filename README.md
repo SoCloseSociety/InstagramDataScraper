@@ -1,42 +1,59 @@
-# Instagram Profile Scraper
+<p align="center">
+  <img src="assets/banner.svg" alt="Instagram Data Scraper" width="900">
+</p>
 
-> **Collect Instagram profile URLs at scale — automated scrolling, smart filtering, clean CSV export.**
-> Open-source tool by **[SoClose Society](https://soclose.co)** — Digital solutions & software development studio.
+<p align="center">
+  <strong>Scrape Instagram profile URLs at scale — automated scrolling, smart filtering, clean CSV export.</strong>
+</p>
 
-[![MIT License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-yellow.svg)](https://python.org)
-[![Selenium](https://img.shields.io/badge/Selenium-4.x-green.svg)](https://selenium.dev)
-[![SoClose Society](https://img.shields.io/badge/SoClose-Society-purple.svg)](https://soclose.co)
+<p align="center">
+  <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-575ECF?style=flat-square" alt="License: MIT"></a>
+  <a href="https://www.python.org/downloads/"><img src="https://img.shields.io/badge/Python-3.10%2B-575ECF?style=flat-square&logo=python&logoColor=white" alt="Python 3.10+"></a>
+  <img src="https://img.shields.io/badge/Platform-Windows%20%7C%20macOS%20%7C%20Linux-575ECF?style=flat-square" alt="Platform">
+  <a href="https://www.selenium.dev/"><img src="https://img.shields.io/badge/Selenium-4.x-575ECF?style=flat-square&logo=selenium&logoColor=white" alt="Selenium"></a>
+  <a href="https://github.com/SoCloseSociety/InstagramDataScraper/stargazers"><img src="https://img.shields.io/github/stars/SoCloseSociety/InstagramDataScraper?style=flat-square&color=575ECF" alt="GitHub Stars"></a>
+  <a href="https://github.com/SoCloseSociety/InstagramDataScraper/issues"><img src="https://img.shields.io/github/issues/SoCloseSociety/InstagramDataScraper?style=flat-square&color=575ECF" alt="Issues"></a>
+  <a href="https://github.com/SoCloseSociety/InstagramDataScraper/network/members"><img src="https://img.shields.io/github/forks/SoCloseSociety/InstagramDataScraper?style=flat-square&color=575ECF" alt="Forks"></a>
+</p>
+
+<p align="center">
+  <a href="#quick-start">Quick Start</a> &bull;
+  <a href="#key-features">Features</a> &bull;
+  <a href="#configuration">Configuration</a> &bull;
+  <a href="#faq">FAQ</a> &bull;
+  <a href="#contributing">Contributing</a>
+</p>
 
 ---
 
-## Why This Tool?
+## What is Instagram Data Scraper?
 
-Need to build a prospect list, analyze followers, or study engagement patterns? Manually copying Instagram profiles is slow and tedious. This scraper automates the entire process — login, scroll, extract, deduplicate, export — in one command.
+**Instagram Data Scraper** is a free, open-source **Instagram profile extraction tool** built with Python and Selenium. It automates the collection of Instagram profile URLs from any page — feed, hashtag, explore, followers — with smart filtering and deduplication.
 
-**Built for:**
-- Growth hackers & digital marketers building lead lists
-- Data analysts studying social media patterns
-- Researchers collecting public profile datasets
-- Developers learning Selenium browser automation
+Need to build a prospect list, analyze followers, or study engagement patterns? Manually copying profiles is slow and tedious. This scraper handles login, scrolling, extraction, deduplication, and CSV export in one command.
 
----
+### Who is this for?
 
-## Features
+- **Growth Hackers** building lead lists for outreach campaigns
+- **Digital Marketers** studying competitors' follower bases
+- **Data Analysts** collecting social media datasets
+- **Researchers** studying engagement patterns and influencer networks
+- **Startup Founders** identifying potential customers or partners
+- **Developers** learning Selenium browser automation
 
-| Feature | Description |
-|---|---|
-| **One-command setup** | Clone, install, run — scraping in under 2 minutes |
-| **Smart login** | Automated Instagram authentication via Selenium |
-| **Infinite scroll** | Continuous feed scrolling with auto-stop detection |
-| **Profile filtering** | Extracts only profile URLs, skips /explore/, /reels/, /settings/ etc. |
-| **Deduplication** | Built-in `set()` ensures zero duplicate profiles |
-| **Human-like delays** | Randomized scroll timing (0.8s–2.0s) to mimic real behavior |
-| **Auto-save** | Progress saved every 50 iterations — never lose data |
-| **Graceful stop** | Press `Ctrl+C` anytime — all collected data is saved |
-| **Secure credentials** | `.env` file support — credentials never in code |
-| **Clean CSV output** | Full Instagram URLs, sorted alphabetically, UTF-8 encoded |
-| **Detailed logging** | Real-time progress with iteration count and stale detection |
+### Key Features
+
+- **One-Command Setup** - Clone, install, run — scraping in under 2 minutes
+- **Smart Login** - Automated Instagram authentication via Selenium
+- **Infinite Scroll** - Continuous feed scrolling with auto-stop detection
+- **Profile Filtering** - Extracts only profile URLs, skips /explore/, /reels/, /settings/
+- **Deduplication** - Built-in set() ensures zero duplicate profiles
+- **Human-Like Delays** - Randomized scroll timing (0.8s-2.0s) to mimic real behavior
+- **Auto-Save** - Progress saved every 50 iterations — never lose data
+- **Graceful Stop** - Press Ctrl+C anytime — all collected data is saved
+- **Secure Credentials** - .env file support — credentials never in code
+- **Clean CSV Output** - Full Instagram URLs, sorted alphabetically, UTF-8 encoded
+- **Free & Open Source** - MIT license, no API key required
 
 ---
 
@@ -44,22 +61,33 @@ Need to build a prospect list, analyze followers, or study engagement patterns? 
 
 ### Prerequisites
 
-- **Python 3.10+** — [Download](https://python.org/downloads/)
-- **Google Chrome** — Latest stable version
-- **Git** — [Download](https://git-scm.com/)
+| Requirement | Details |
+|-------------|---------|
+| **Python** | Version 3.10 or higher ([Download](https://www.python.org/downloads/)) |
+| **Google Chrome** | Latest version ([Download](https://www.google.com/chrome/)) |
+| **Instagram Account** | A valid Instagram account |
 
-### Install
+### Installation
 
 ```bash
-git clone https://github.com/soclosesociety/InstagramDataScraper.git
+# 1. Clone the repository
+git clone https://github.com/SoCloseSociety/InstagramDataScraper.git
 cd InstagramDataScraper
+
+# 2. (Recommended) Create a virtual environment
 python -m venv venv
-source venv/bin/activate  # macOS/Linux
-# venv\Scripts\activate   # Windows
+
+# Activate it:
+# Windows:
+venv\Scripts\activate
+# macOS / Linux:
+source venv/bin/activate
+
+# 3. Install dependencies
 pip install -r requirements.txt
 ```
 
-### Configure
+### Configure Credentials
 
 ```bash
 cp .env.example .env
@@ -74,7 +102,7 @@ INSTA_PASSWORD=your_password
 
 > Skip the `.env` file to enter credentials at runtime instead.
 
-### Run
+### Usage
 
 ```bash
 python main.py
@@ -88,17 +116,6 @@ python main.py
 5. Results are saved to a `.csv` file
 
 Press **Ctrl+C** at any time to stop and save.
-
----
-
-## Output Format
-
-```csv
-ProfileLink
-https://www.instagram.com/alice/
-https://www.instagram.com/bob/
-https://www.instagram.com/charlie/
-```
 
 ---
 
@@ -116,26 +133,43 @@ https://www.instagram.com/charlie/
                                         └─────────────┘
 ```
 
-1. **Selenium** opens Chrome and handles authentication
-2. **BeautifulSoup** parses the page HTML and extracts `<a>` tags
-3. Profile URLs are filtered (only `/username/` patterns, no `/explore/` etc.)
-4. A `set` ensures each profile appears only once
-5. Randomized delays between scrolls avoid detection
-6. Auto-stops after 500 stale iterations (no new profiles found)
+---
+
+## Output Format
+
+```csv
+ProfileLink
+https://www.instagram.com/alice/
+https://www.instagram.com/bob/
+https://www.instagram.com/charlie/
+```
 
 ---
 
 ## Configuration
 
-Edit the constants at the top of [main.py](main.py):
+Edit the constants at the top of `main.py`:
 
 | Variable | Default | Description |
-|---|---|---|
-| `MAX_STALE_ITERATIONS` | 500 | Stop after N iterations with no new links |
-| `SCROLL_PAUSE_MIN` | 0.8s | Minimum delay between scrolls |
-| `SCROLL_PAUSE_MAX` | 2.0s | Maximum delay between scrolls |
-| `SCROLL_AMOUNT` | 600 | Pixels to scroll down per iteration |
-| `SAVE_INTERVAL` | 50 | Save to CSV every N iterations |
+|----------|---------|-------------|
+| `MAX_STALE_ITERATIONS` | `500` | Stop after N iterations with no new links |
+| `SCROLL_PAUSE_MIN` | `0.8s` | Minimum delay between scrolls |
+| `SCROLL_PAUSE_MAX` | `2.0s` | Maximum delay between scrolls |
+| `SCROLL_AMOUNT` | `600` | Pixels to scroll down per iteration |
+| `SAVE_INTERVAL` | `50` | Save to CSV every N iterations |
+
+---
+
+## Tech Stack
+
+| Technology | Purpose |
+|------------|---------|
+| [Python 3.10+](https://python.org) | Core language |
+| [Selenium 4.x](https://selenium.dev) | Browser automation |
+| [BeautifulSoup4](https://beautiful-soup-4.readthedocs.io) | HTML parsing |
+| [lxml](https://lxml.de) | Fast HTML parser backend |
+| [python-dotenv](https://pypi.org/project/python-dotenv/) | Environment variable management |
+| [webdriver-manager](https://pypi.org/project/webdriver-manager/) | Automatic ChromeDriver setup |
 
 ---
 
@@ -146,79 +180,109 @@ InstagramDataScraper/
 ├── main.py              # Core scraper script
 ├── requirements.txt     # Python dependencies
 ├── .env.example         # Credential template
-├── .gitignore           # Git ignore rules
+├── assets/
+│   └── banner.svg       # Project banner
+├── pyproject.toml       # Python project metadata
 ├── CONTRIBUTING.md      # Contribution guidelines
 ├── LICENSE              # MIT License
-├── pyproject.toml       # Python project metadata
-└── README.md            # Documentation
+├── README.md            # This file
+└── .gitignore           # Git ignore rules
 ```
 
 ---
 
-## Tech Stack
+## Troubleshooting
 
-| Technology | Purpose |
-|---|---|
-| [Python 3.10+](https://python.org) | Core language |
-| [Selenium 4.x](https://selenium.dev) | Browser automation |
-| [BeautifulSoup4](https://beautiful-soup-4.readthedocs.io) | HTML parsing |
-| [lxml](https://lxml.de) | Fast HTML parser backend |
-| [python-dotenv](https://pypi.org/project/python-dotenv/) | Environment variable management |
-| [webdriver-manager](https://pypi.org/project/webdriver-manager/) | Automatic ChromeDriver setup |
+### Chrome driver issues
 
----
+```bash
+pip install --upgrade webdriver-manager
+```
 
-## More Open-Source Tools by SoClose Society
+### Login fails
 
-We build and share automation tools for the community. Explore our other projects:
+If the automated login doesn't work:
+1. Check your credentials in `.env`
+2. Instagram may require 2FA — complete it manually in the browser window
+3. Try logging in manually first, then press ENTER to start scraping
 
-| Project | Description | Stars |
-|---|---|---|
-| [PinterestBulkPostBot](https://github.com/soclosesociety/PinterestBulkPostBot) | Automated Pinterest posting tool | 11 |
-| [LinkedinDataScraper](https://github.com/soclosesociety/LinkedinDataScraper) | LinkedIn contact data extraction | 2 |
-| [BOT_GoogleMap_Scrapping](https://github.com/soclosesociety/BOT_GoogleMap_Scrapping) | Google Maps data scraper | 3 |
-| [BOT-Facebook_Bulk_Invite](https://github.com/soclosesociety/BOT-Facebook_Bulk_Invite_Friend_To_FB_Group) | Facebook group invitation automation | 4 |
-| [FreeWorkDataScraper](https://github.com/soclosesociety/FreeWorkDataScraper) | Freelance job posting scraper | 1 |
+### No profiles found
 
-**[View all 15+ repositories](https://github.com/soclosesociety)**
+If the scraper scrolls but doesn't find profiles:
+1. Make sure you navigated to a page with profile links (feed, hashtag page, followers list)
+2. Instagram may have changed its HTML structure — open an issue
 
 ---
 
-## Disclaimer
+## FAQ
 
-> This tool is provided **for educational and research purposes only**.
-> Scraping Instagram may violate their [Terms of Service](https://help.instagram.com/581066165581870).
-> The authors are not responsible for any misuse or consequences resulting from the use of this tool.
-> Always respect platform policies and applicable laws in your jurisdiction.
+**Q: Is this free?**
+A: Yes. Instagram Data Scraper is 100% free and open source under the MIT license.
+
+**Q: Do I need an Instagram API key?**
+A: No. This tool uses browser automation (Selenium), no API key needed.
+
+**Q: How many profiles can I scrape?**
+A: No hard limit. The scraper runs until no new profiles are found for 500 consecutive iterations. Be mindful of Instagram's usage policies.
+
+**Q: Are my credentials safe?**
+A: Credentials are stored in a local `.env` file that is gitignored. They are never uploaded or shared.
+
+**Q: Can I scrape hashtag pages?**
+A: Yes. After login, navigate to any hashtag page, press ENTER, and the scraper will collect profile links.
+
+**Q: Does it work on Mac / Linux?**
+A: Yes. Fully cross-platform on Windows, macOS, and Linux.
+
+---
+
+## Alternatives Comparison
+
+| Feature | Instagram Data Scraper | Manual Copy-Paste | Instagram API | Paid Tools |
+|---------|----------------------|-------------------|--------------|-----------|
+| Price | **Free** | Free | Free (limited) | $30-100/mo |
+| Bulk extraction | Yes | No | Rate limited | Yes |
+| Profile filtering | Yes | Manual | N/A | Varies |
+| Open source | Yes | N/A | No | No |
+| API key required | No | No | Yes | Yes |
+| Cross-platform | Yes | Yes | Any | Web only |
 
 ---
 
 ## Contributing
 
-We welcome contributions! See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
-
----
-
-## About SoClose Society
-
-**[SoClose Society](https://soclose.co)** is a digital solutions & software development studio. We build open-source automation tools and share them with the developer community.
-
-- **Website:** [soclose.co](https://soclose.co)
-- **GitHub:** [github.com/soclosesociety](https://github.com/soclosesociety)
-- **Contact:** [contact@soclose.co](mailto:contact@soclose.co)
-- **LinkedIn:** [SoClose Agency](https://linkedin.com/company/soclose-agency)
-- **Twitter/X:** [@SoCloseAgency](https://twitter.com/SoCloseAgency)
+Contributions are welcome! Please read the [Contributing Guide](CONTRIBUTING.md) before submitting a pull request.
 
 ---
 
 ## License
 
-This project is licensed under the **MIT License** — see the [LICENSE](LICENSE) file for details.
+This project is licensed under the [MIT License](LICENSE).
+
+---
+
+## Disclaimer
+
+This tool is provided for **educational and research purposes only**. Scraping Instagram may violate their [Terms of Service](https://help.instagram.com/581066165581870). The authors are not responsible for any misuse or consequences resulting from the use of this software. Always respect platform policies and applicable laws.
 
 ---
 
 <p align="center">
-  <strong><a href="https://soclose.co">SoClose Society</a></strong><br/>
-  Digital solutions & software development studio<br/><br/>
-  <a href="https://github.com/soclosesociety/InstagramDataScraper">Star this repo</a> if you find it useful!
+  <strong>If this project helps you, please give it a star!</strong><br>
+  It helps others discover this tool.<br><br>
+  <a href="https://github.com/SoCloseSociety/InstagramDataScraper">
+    <img src="https://img.shields.io/github/stars/SoCloseSociety/InstagramDataScraper?style=for-the-badge&logo=github&color=575ECF" alt="Star this repo">
+  </a>
+</p>
+
+<br>
+
+<p align="center">
+  <sub>Built with purpose by <a href="https://soclose.co"><strong>SoClose</strong></a> &mdash; Digital Innovation Through Automation & AI</sub><br>
+  <sub>
+    <a href="https://soclose.co">Website</a> &bull;
+    <a href="https://linkedin.com/company/soclose-agency">LinkedIn</a> &bull;
+    <a href="https://twitter.com/SoCloseAgency">Twitter</a> &bull;
+    <a href="mailto:hello@soclose.co">Contact</a>
+  </sub>
 </p>
