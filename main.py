@@ -1,35 +1,9 @@
-"""
-Instagram Profile Scraper
-by SoClose Society — https://soclose.co
-Digital solutions & software development studio.
-
-Scrapes Instagram profile links from any feed page using Selenium
-browser automation. Exports unique profile URLs to CSV format.
-
-Part of the SoClose open-source automation toolkit:
-    https://github.com/soclosesociety
-
-Usage:
-    python main.py
-
-Environment Variables:
-    INSTA_USERNAME - Instagram username or email
-    INSTA_PASSWORD - Instagram password
-
-License: MIT — See LICENSE file for details.
-Contact: contact@soclose.co
-
-DISCLAIMER: This tool is provided for educational purposes only.
-Scraping Instagram may violate their Terms of Service.
-Use responsibly and at your own risk.
-"""
-
 import csv
 import logging
 import os
 import random
 import sys
-import time
+time
 from pathlib import Path
 
 from bs4 import BeautifulSoup
@@ -44,6 +18,20 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 from webdriver_manager.chrome import ChromeDriverManager
+
+def is_valid_username(username: str) -> bool:
+    """Validate Instagram username format."""
+    if not (3 <= len(username) <= 30):
+        return False
+    if not username.isalnum():
+        return False
+    return True
+
+def is_valid_password(password: str) -> bool:
+    """Validate Instagram password format."""
+    if len(password) < 6:
+        return False
+    return True
 
 # ---------------------------------------------------------------------------
 # Configuration
@@ -61,11 +49,9 @@ SCROLL_PAUSE_MAX = 2.0  # Maximum pause between scrolls (seconds)
 SCROLL_AMOUNT = 600  # Pixels to scroll down per iteration
 SAVE_INTERVAL = 50  # Save to CSV every N iterations
 
-
 # ---------------------------------------------------------------------------
 # Helper Functions
 # ---------------------------------------------------------------------------
-
 
 def create_driver() -> webdriver.Chrome:
     """Create and configure a Chrome WebDriver instance."""
@@ -80,18 +66,19 @@ def create_driver() -> webdriver.Chrome:
     driver.maximize_window()
     return driver
 
-
 def get_credentials() -> tuple[str, str]:
-    """Retrieve Instagram credentials from environment variables or user input."""
+    """Retrieve Instagram credentials from environment variables or user input and validate them."""
     username = os.getenv("INSTA_USERNAME") or input("Enter Instagram username/email: ").strip()
     password = os.getenv("INSTA_PASSWORD") or input("Enter Instagram password: ").strip()
 
-    if not username or not password:
-        logger.error("Username and password are required.")
+    if not is_valid_username(username):
+        logger.error("Invalid username. Please check the format.")
+        sys.exit(1)
+    if not is_valid_password(password):
+        logger.error("Invalid password. Password must be at least 6 characters long.")
         sys.exit(1)
 
     return username, password
-
 
 def login(driver: webdriver.Chrome, username: str, password: str) -> bool:
     """Log in to Instagram and return True on success."""
@@ -122,13 +109,11 @@ def login(driver: webdriver.Chrome, username: str, password: str) -> bool:
     logger.info("Login successful.")
     return True
 
-
 EXCLUDED_PATHS = {
     "/explore/", "/accounts/", "/reels/", "/stories/", "/direct/",
     "/directory/", "/developer/", "/about/", "/legal/", "/privacy/",
     "/terms/", "/session/", "/emails/", "/settings/", "/nametag/",
 }
-
 
 def extract_profile_links(html: str) -> set[str]:
     """Extract Instagram profile links from page HTML source."""
@@ -141,7 +126,6 @@ def extract_profile_links(html: str) -> set[str]:
             links.add(href)
     return links
 
-
 def save_to_csv(links: list[str], filepath: Path) -> None:
     """Save profile links to a CSV file."""
     with open(filepath, "w", newline="", encoding="utf-8") as f:
@@ -151,7 +135,6 @@ def save_to_csv(links: list[str], filepath: Path) -> None:
             writer.writerow([f"https://www.instagram.com{link}"])
     logger.info("Saved %d links to %s", len(links), filepath)
 
-
 def scrape_profiles(driver: webdriver.Chrome, output_file: Path) -> list[str]:
     """Scroll the feed and collect unique profile links."""
     all_links: set[str] = set()
@@ -159,7 +142,8 @@ def scrape_profiles(driver: webdriver.Chrome, output_file: Path) -> list[str]:
     iteration = 0
 
     logger.info("Starting scrape — scroll the page or let the script run.")
-    logger.info("Press Ctrl+C to stop early and save results.\n")
+    logger.info("Press Ctrl+C to stop early and save results.
+")
 
     try:
         while stale_count < MAX_STALE_ITERATIONS:
@@ -199,11 +183,9 @@ def scrape_profiles(driver: webdriver.Chrome, output_file: Path) -> list[str]:
 
     return sorted(all_links)
 
-
 # ---------------------------------------------------------------------------
 # Main Entry Point
 # ---------------------------------------------------------------------------
-
 
 def main() -> None:
     """Main entry point for the Instagram Profile Scraper."""
@@ -234,7 +216,6 @@ def main() -> None:
     finally:
         driver.quit()
         logger.info("Browser closed.")
-
 
 if __name__ == "__main__":
     main()
