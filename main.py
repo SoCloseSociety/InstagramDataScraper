@@ -1,5 +1,4 @@
-"""
-Instagram Profile Scraper
+# Instagram Profile Scraper
 by SoClose Society — https://soclose.co
 Digital solutions & software development studio.
 
@@ -12,24 +11,19 @@ Part of the SoClose open-source automation toolkit:
 Usage:
     python main.py
 
-Environment Variables:
-    INSTA_USERNAME - Instagram username or email
-    INSTA_PASSWORD - Instagram password
-
 License: MIT — See LICENSE file for details.
 Contact: contact@soclose.co
 
 DISCLAIMER: This tool is provided for educational purposes only.
 Scraping Instagram may violate their Terms of Service.
 Use responsibly and at your own risk.
-"""
 
 import csv
 import logging
 import os
 import random
 import sys
-import time
+time
 from pathlib import Path
 
 from bs4 import BeautifulSoup
@@ -61,10 +55,10 @@ SCROLL_PAUSE_MAX = 2.0  # Maximum pause between scrolls (seconds)
 SCROLL_AMOUNT = 600  # Pixels to scroll down per iteration
 SAVE_INTERVAL = 50  # Save to CSV every N iterations
 
-
 # ---------------------------------------------------------------------------
 # Helper Functions
 # ---------------------------------------------------------------------------
+
 
 
 def create_driver() -> webdriver.Chrome:
@@ -83,8 +77,8 @@ def create_driver() -> webdriver.Chrome:
 
 def get_credentials() -> tuple[str, str]:
     """Retrieve Instagram credentials from environment variables or user input."""
-    username = os.getenv("INSTA_USERNAME") or input("Enter Instagram username/email: ").strip()
-    password = os.getenv("INSTA_PASSWORD") or input("Enter Instagram password: ").strip()
+    username = os.getenv("INSTA_USERNAME")
+    password = os.getenv("INSTA_PASSWORD")
 
     if not username or not password:
         logger.error("Username and password are required.")
@@ -122,10 +116,9 @@ def login(driver: webdriver.Chrome, username: str, password: str) -> bool:
     logger.info("Login successful.")
     return True
 
-
 EXCLUDED_PATHS = {
     "/explore/", "/accounts/", "/reels/", "/stories/", "/direct/",
-    "/directory/", "/developer/", "/about/", "/legal/", "/privacy/",
+    "/directory/", "/developer/", "/about/", "/legal/", "/privacy",
     "/terms/", "/session/", "/emails/", "/settings/", "/nametag/",
 }
 
@@ -199,7 +192,6 @@ def scrape_profiles(driver: webdriver.Chrome, output_file: Path) -> list[str]:
 
     return sorted(all_links)
 
-
 # ---------------------------------------------------------------------------
 # Main Entry Point
 # ---------------------------------------------------------------------------
@@ -221,7 +213,7 @@ def main() -> None:
             logger.error("Could not log in. Exiting.")
             return
 
-        input("\nNavigate to the page you want to scrape, then press ENTER to start...")
+        input(\"Navigate to the page you want to scrape, then press ENTER to start...\")
 
         links = scrape_profiles(driver, output_file)
         save_to_csv(links, output_file)
@@ -234,7 +226,6 @@ def main() -> None:
     finally:
         driver.quit()
         logger.info("Browser closed.")
-
 
 if __name__ == "__main__":
     main()
