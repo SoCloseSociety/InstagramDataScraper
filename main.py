@@ -1,5 +1,4 @@
-"""
-Instagram Profile Scraper
+# Instagram Profile Scraper
 by SoClose Society — https://soclose.co
 Digital solutions & software development studio.
 
@@ -14,7 +13,7 @@ Usage:
 
 Environment Variables:
     INSTA_USERNAME - Instagram username or email
-    INSTA_PASSWORD - Instagram password
+    INSTA_PASSWORD - Instagram password (not hardcoded)
 
 License: MIT — See LICENSE file for details.
 Contact: contact@soclose.co
@@ -22,14 +21,13 @@ Contact: contact@soclose.co
 DISCLAIMER: This tool is provided for educational purposes only.
 Scraping Instagram may violate their Terms of Service.
 Use responsibly and at your own risk.
-"""
 
 import csv
 import logging
 import os
 import random
 import sys
-import time
+time
 from pathlib import Path
 
 from bs4 import BeautifulSoup
@@ -60,7 +58,6 @@ SCROLL_PAUSE_MIN = 0.8  # Minimum pause between scrolls (seconds)
 SCROLL_PAUSE_MAX = 2.0  # Maximum pause between scrolls (seconds)
 SCROLL_AMOUNT = 600  # Pixels to scroll down per iteration
 SAVE_INTERVAL = 50  # Save to CSV every N iterations
-
 
 # ---------------------------------------------------------------------------
 # Helper Functions
@@ -121,7 +118,6 @@ def login(driver: webdriver.Chrome, username: str, password: str) -> bool:
 
     logger.info("Login successful.")
     return True
-
 
 EXCLUDED_PATHS = {
     "/explore/", "/accounts/", "/reels/", "/stories/", "/direct/",
@@ -199,7 +195,6 @@ def scrape_profiles(driver: webdriver.Chrome, output_file: Path) -> list[str]:
 
     return sorted(all_links)
 
-
 # ---------------------------------------------------------------------------
 # Main Entry Point
 # ---------------------------------------------------------------------------
@@ -221,7 +216,7 @@ def main() -> None:
             logger.error("Could not log in. Exiting.")
             return
 
-        input("\nNavigate to the page you want to scrape, then press ENTER to start...")
+        input(\"Navigate to the page you want to scrape, then press ENTER to start...\")
 
         links = scrape_profiles(driver, output_file)
         save_to_csv(links, output_file)
@@ -234,7 +229,6 @@ def main() -> None:
     finally:
         driver.quit()
         logger.info("Browser closed.")
-
 
 if __name__ == "__main__":
     main()
