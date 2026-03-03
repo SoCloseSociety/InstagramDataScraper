@@ -49,6 +49,9 @@ from webdriver_manager.chrome import ChromeDriverManager
 # Configuration
 # ---------------------------------------------------------------------------
 
+import os
+from dotenv import load_dotenv
+
 load_dotenv()
 
 LOG_FORMAT = "%(asctime)s [%(levelname)s] %(message)s"
@@ -211,6 +214,10 @@ def main() -> None:
     logger.info("=" * 50)
 
     username, password = get_credentials()
+    if not validate_credentials(username, password):
+        logger.error("Invalid credentials. Exiting.")
+        return
+
     output_name = input("Enter output file name (without extension): ").strip() or "instagram_profiles"
     output_file = Path(f"{output_name}.csv")
 
