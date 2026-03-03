@@ -56,8 +56,7 @@ logging.basicConfig(level=logging.INFO, format=LOG_FORMAT)
 logger = logging.getLogger(__name__)
 
 MAX_STALE_ITERATIONS = 500  # Stop after this many iterations with no new links
-SCROLL_PAUSE_MIN = 0.8  # Minimum pause between scrolls (seconds)
-SCROLL_PAUSE_MAX = 2.0  # Maximum pause between scrolls (seconds)
+SCROLL_DELAY = 1.5  # Consistent delay between scrolls (seconds)
 SCROLL_AMOUNT = 600  # Pixels to scroll down per iteration
 SAVE_INTERVAL = 50  # Save to CSV every N iterations
 
@@ -190,9 +189,9 @@ def scrape_profiles(driver: webdriver.Chrome, output_file: Path) -> list[str]:
             if iteration % SAVE_INTERVAL == 0:
                 save_to_csv(list(all_links), output_file)
 
-            # Scroll down with randomized delay to appear more human
+            # Scroll down with consistent delay
             driver.execute_script(f"window.scrollBy(0, {SCROLL_AMOUNT});")
-            time.sleep(random.uniform(SCROLL_PAUSE_MIN, SCROLL_PAUSE_MAX))
+            time.sleep(SCROLL_DELAY)
 
     except KeyboardInterrupt:
         logger.info("\nScraping interrupted by user.")
