@@ -56,8 +56,8 @@ logging.basicConfig(level=logging.INFO, format=LOG_FORMAT)
 logger = logging.getLogger(__name__)
 
 MAX_STALE_ITERATIONS = 500  # Stop after this many iterations with no new links
-SCROLL_PAUSE_MIN = 0.8  # Minimum pause between scrolls (seconds)
-SCROLL_PAUSE_MAX = 2.0  # Maximum pause between scrolls (seconds)
+SCROLL_PAUSE_MIN = 1.0  # Minimum pause between scrolls (seconds)
+SCROLL_PAUSE_MAX = 2.5  # Maximum pause between scrolls (seconds)
 SCROLL_AMOUNT = 600  # Pixels to scroll down per iteration
 SAVE_INTERVAL = 50  # Save to CSV every N iterations
 
@@ -153,10 +153,11 @@ def save_to_csv(links: list[str], filepath: Path) -> None:
 
 
 def scrape_profiles(driver: webdriver.Chrome, output_file: Path) -> list[str]:
-    """Scroll the feed and collect unique profile links."""
+    """Scroll the feed and collect unique profile links with adaptive delays."""
     all_links: set[str] = set()
     stale_count = 0
     iteration = 0
+    last_scroll_time = time.time()
 
     logger.info("Starting scrape — scroll the page or let the script run.")
     logger.info("Press Ctrl+C to stop early and save results.\n")
@@ -191,8 +192,12 @@ def scrape_profiles(driver: webdriver.Chrome, output_file: Path) -> list[str]:
                 save_to_csv(list(all_links), output_file)
 
             # Scroll down with randomized delay to appear more human
+            current_time = time.time()
+            elapsed_time = current_time - last_scroll_time
+            if elapsed_time < 1.5:
+                time.sleep(1.5 - elapsed_time)
             driver.execute_script(f"window.scrollBy(0, {SCROLL_AMOUNT});")
-            time.sleep(random.uniform(SCROLL_PAUSE_MIN, SCROLL_PAUSE_MAX))
+            last_scroll_time = current_time
 
     except KeyboardInterrupt:
         logger.info("\nScraping interrupted by user.")
